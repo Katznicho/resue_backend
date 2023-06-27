@@ -27,7 +27,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'phone_number', 'address', 'role_id', 'baby_id', 'title', 'user_image','otp_send_time', 'otp'];
+    protected $fillable = ['name', 'email', 'password', 'phone_number', 'address', 'role_id', 'title', 'user_image','otp_send_time', 'otp'];
 
 
     /**
@@ -63,15 +63,12 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
-    public function baby(): HasOne
+    public function userType()
     {
-        return $this->hasOne(Baby::class);
+        return $this->belongsTo(UserType::class);
     }
 
-    // public function notifications()
-    // {
-    //     return $this->hasMany(Notification::class);
-    // }
+
     public function routeNotificationForMail(Notification $notification): array|string
     {
         // Return email address only...
@@ -79,6 +76,30 @@ class User extends Authenticatable
 
         // Return email address and name...
         return [$this->email => $this->name];
+    }
+
+    //a user has many orders
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    //a user has many products
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    //a user has many reviews
+    public function reviews()
+    {
+        return $this->hasMany(LikeAndComment::class);
+    }
+
+    //a user many payments
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
     }
 
 

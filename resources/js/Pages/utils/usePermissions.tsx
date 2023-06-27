@@ -22,11 +22,7 @@ export const usePermissions = ()=>{
       name: "Users",
       permissions: ["Manage Users", "Add User", "Edit User", "Delete User"],
     },
-    {
-      id: 4,
-      name: "Baby",
-      permissions: ["Manage Bbay", "Add Bbay", "Edit Bbay", "Delete Bbay"],
-    },
+
     {
       id: 1,
       name: "Analytics",
@@ -63,16 +59,7 @@ export const usePermissions = ()=>{
       ],
     },
 
-    {
-      id: 1,
-      name: "Gallery",
-      permissions: [
-        "Manage Gallery",
-        "Add Gallery",
-        "Edit Gallery",
-        "Delete Gallery",
-      ],
-    },
+
   ]);
 
   return {permissions, setPermissions}

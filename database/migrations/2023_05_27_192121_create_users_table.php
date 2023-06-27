@@ -23,7 +23,6 @@ class CreateUsersTable extends Migration
             $table->string('phone_number')->nullable();
             $table->string('address')->nullable();
             $table->unsignedBigInteger('role_id')->default('1');
-            // $table->boolean('is_email_verified')->default(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->boolean('is_phone_number_verified')->default(false);
@@ -37,10 +36,11 @@ class CreateUsersTable extends Migration
             $table->string('phone_number_token')->nullable();
             $table->string('password_reset_token')->nullable();
             $table->string("user_image")->nullable();
-            $table->unsignedBigInteger('baby_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreignId('user_type_id')->constrained()->onDelete('cascade');
+
 ;
         });
     }

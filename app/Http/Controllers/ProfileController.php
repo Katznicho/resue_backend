@@ -17,7 +17,6 @@ class ProfileController extends Controller
     {
          $user_id =  $request->user()->id;
          $user_details = User::where("id", $user_id)
-           ->with('baby')
            ->first();
         // Assuming a view template engine like Blade is used for rendering views
         return Inertia::render('Auth/Profile', [

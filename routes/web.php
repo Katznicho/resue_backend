@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\AudioController;
-use App\Http\Controllers\BabyController;
-use App\Http\Controllers\ConfigurationController;
-use App\Http\Controllers\DeviceController;
+
+
+
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\NotificationController;
@@ -11,12 +10,12 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SensorController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\VideoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\ChartController;
 use Illuminate\Support\Facades\Auth;use App\Http\Controllers\DasbboardController;
 use App\Http\Controllers\DashBoardController;
+use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -74,14 +73,10 @@ Route::group(['middleware'=>['auth', 'verified']], static function() {
 
     Route::resource("roles", RoleController::class);
 
-    Route::resource('babies', BabyController::class);
     Route::resource('settings', SettingController::class);
-    Route::resource("videos",  VideoController::class);
-    Route::resource("audios",  AudioController::class);
-    Route::resource("sensors", SensorController::class);
+    Route::resource("categories", ProductCategoryController::class);
     Route::resource("logs", LogController::class);
     Route::resource("events", EventController::class);
-    Route::resource("configurations", ConfigurationController::class);
     Route::resource("notifications", NotificationController::class);
     //
     //Route::get("/showprofile" , [ , 'showpt/'])
@@ -94,11 +89,8 @@ Route::group(['middleware'=>['auth', 'verified']], static function() {
 
     Route::resource("settings", SettingController::class);
     Route::resource("sensors", SensorController::class);
-    Route::resource("devices", DeviceController::class);
-    
-    Route::post("updateDeviceConfig", [DeviceController::class, "updateDeviceConfig"])->name("updateDeviceConfig");
 
-    Route::get("device_details/{id}", [DeviceController::class, 'show'])->name("device_details");
+
 
     Route::post("markNotificationAsRead/{id}", [NotificationController::class , "markNotificationAsRead"])->name("markNotificationAsRead");
 

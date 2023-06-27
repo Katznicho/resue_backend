@@ -9,7 +9,7 @@ const Footer = () => {
           <span
             style={{ fontFamily: "Orbitron,monospace", textAlign: "center" }}
           >
-            Smart Baby Monitoring System
+          Reuse
           </span>
           .{" "}
         </strong>

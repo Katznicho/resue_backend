@@ -13,18 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('devices', function (Blueprint $table) {
+        Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string("name")->nullable();
+            $table->string("slug")->nullable();
+            $table->string("image")->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('type');
-            $table->string('location');
-            $table->string('status');
-            $table->string('version');
-            $table->string('model');
-            $table->string("device_serial_number");
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -35,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('devices');
+        Schema::dropIfExists('product_categories');
     }
 };
