@@ -29,7 +29,7 @@ const customStyles = {
   },
 };
 
-const RoleTable = ({ data, auth }) => {
+const CategoryTable = ({ data, auth }) => {
 
 
   //handle delete
@@ -79,13 +79,28 @@ const RoleTable = ({ data, auth }) => {
 
   const [columns, setColumns] = useState([
     {
+       name: "Image",
+        cell: (row) => (
+          <img
+
+            src={row.image}
+            alt={row.name}
+            className="img-fluid"
+            style={{ width: "50px", height: "50px" }}
+          />
+        ),
+
+
+    },
+
+    {
       name: "Name",
-      selector: (row) => row.role,
+      selector: (row) => row.name,
       sortable: true,
     },
     {
       name: "Description",
-      selector: (row) => row.description,
+      selector: (row) => row.slug,
       sortable: true,
     },
     {
@@ -154,7 +169,7 @@ const RoleTable = ({ data, auth }) => {
       </div>
 
       <DataTable
-        title={"Roles"}
+        title={"Categories"}
 
         columns={columns}
         data={details}
@@ -174,19 +189,22 @@ const RoleTable = ({ data, auth }) => {
 
 const Index = () => {
   const {
-    props: { roles, auth },
+    props: { categories, auth },
   } = usePage();
+   
+  console.log(categories);
+
 
   return (
     <div>
       <div className="ml-2">
-        <h1 className="ml-4">Manage Roles</h1>
-        <RoleTable data={roles} auth={auth} />
+        <h1 className="ml-4">Manage Categories</h1>
+        <CategoryTable data={categories} auth={auth} />
       </div>
     </div>
   );
 };
 
-Index.layout = (page) => <Main children={page} title="Manage Roles" />;
+Index.layout = (page) => <Main children={page} title="Manage Categories" />;
 
 export default Index;

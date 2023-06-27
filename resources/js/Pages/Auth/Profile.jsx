@@ -68,6 +68,7 @@ const Profile = () => {
         <div class="card-body text-center">
           {/* form */}
           <form onSubmit={submit}>
+
             <div className="form-group">
               <input
                 type="file"
@@ -98,6 +99,7 @@ const Profile = () => {
                 Update Image
               </button>
             </div>
+            
           </form>
           {/* form */}
         </div>

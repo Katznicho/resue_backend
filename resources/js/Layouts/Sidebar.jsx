@@ -148,11 +148,38 @@ const Sidebar = () => {
 
 
 
-            {/* analytics */}
+            {/* categories */}
+            <NavTree
+              href="registry"
+              iClass="fas fa-bell"
+              word={
+                <>
+                  Categories<i className="right fas fa-angle-left"></i>
+                </>
+              }
+            >
+              <ul className="nav nav-treeview">
+                <NavList
+                  href={route("categories.index")}
+                  aClass="side-link"
+                  iClass="fas fa-bell"
+                  word="Manage Categories"
+                />
+              </ul>
+              <ul className="nav nav-treeview">
+                <NavList
+                  href={route("categories.create")}
+                  aClass="side-link"
+                  iClass="fas fa-bell"
+                  word="Create Categories"
+                />
+              </ul>
+            </NavTree>
 
-            {/* analytics */}
+            {/* categories */}
 
             {/* notifications */}
+
             <NavTree
               href="registry"
               iClass="fas fa-bell"

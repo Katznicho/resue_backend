@@ -38,13 +38,13 @@ class ProductCategoryController extends Controller
                 'id' => $category->id,
                 'name' => $category->name,
                 'slug' => $category->slug,
-                'image' => $category->image,
+                'image' => url($category->image),
                 'created_at' => $category->created_at,
                 'updated_at' => $category->updated_at
             ];
         });
 
-    return Inertia::render('Roles/Index', ['categories' => $categories]);
+    return Inertia::render('Categories/Index', ['categories' => $categories]);
     }
 
     /**
@@ -55,6 +55,7 @@ class ProductCategoryController extends Controller
     public function create()
     {
         //
+        return Inertia::render('Categories/Create');
     }
 
     /**
@@ -66,6 +67,26 @@ class ProductCategoryController extends Controller
     public function store(Request $request)
     {
         //
+            
+                // Validate the request...
+                $request->validate([
+                    'name' => 'required|unique:product_categories|max:255',
+                    'description' => 'required|max:255',
+                    'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                ]);
+    
+                $category = new ProductCategory;
+    
+                $category->name = $request->name;
+                $category->slug = $request->description;
+                $category->image = $request->image->store('categories', 'public');
+                //user_id
+                $category->user_id = $request->user()->id;
+                $category->save();
+    
+                return redirect()->route('categories.index')
+                    ->with('success', 'Category created successfully.');
+
     }
 
     /**
