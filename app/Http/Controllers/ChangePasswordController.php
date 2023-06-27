@@ -73,6 +73,7 @@ class ChangePasswordController extends Controller
         $path_url =  url(str_replace('public', '/storage', $path));
         //update  user profile
         User::where("id", $user_id)->update(['user_image'=>$path_url]);
+        //send 
         return redirect()->back()->with("success", "profile updated sucessfully");
     }
 }
